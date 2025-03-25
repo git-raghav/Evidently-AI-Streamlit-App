@@ -1,4 +1,4 @@
-# 🚀 Evidently AI Streamlit App in Docker 🐳
+# 🚢 Evidently AI Sets Sail in Docker: A Voyage into Data Monitoring 🐳📊
 
 ## 📌 Introduction
 
@@ -37,7 +37,6 @@ Ensure your working directory contains the following files and folders:
  │
  ├── 📄 app.py                   # Main Streamlit application
  ├── 📄 Dockerfile               # Defines the Docker image for Streamlit
- ├── 📄 docker-compose.yml        # Docker Compose for managing services
  ├── 📄 requirements.txt          # Python dependencies
  ├── 📄 README.md                 # Project documentation
 ```
@@ -118,7 +117,7 @@ altair==4.0
 
 ```sh
 git clone <repo-link>
-cd evidently-ai-streamlit
+cd Evidently AI Sets Sail in Docker
 ```
 
 ### 2️⃣ Build & Run Containers
@@ -127,27 +126,10 @@ cd evidently-ai-streamlit
 docker build -t evidently-streamlit .
 docker run -p 8501:8501 evidently-streamlit
 ```
-
-or using `docker-compose`:
-
-```sh
-docker-compose up --build -d
-```
-
--   `--build` → Ensures a fresh build.
--   `-d` → Runs in detached mode.
-
+ 
 ### 3️⃣ Access the Streamlit App
 
 Open [http://localhost:8501](http://localhost:8501) in your browser.
-
-### 4️⃣ Stopping & Removing Containers
-
-```sh
-docker-compose down
-```
-
-This stops and removes the containers while keeping project data intact.
 
 ---
 
