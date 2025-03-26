@@ -32,7 +32,7 @@ Ensure your working directory contains the following files and folders:
  │    ├── ...
  │
  ├── 📂 static                  # Stores static assets (CSS, images, etc.)
- │    ├── style.css             # Custom styling
+ │    ├── logo.png             # Application logo
  │    ├── ...
  │
  ├── 📄 app.py                   # Main Streamlit application
@@ -91,22 +91,23 @@ CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0
 ## 🐍 Python Dependencies (requirements.txt)
 
 ```txt
-category_encoders==2.6.0
-evidently==0.2.6
-jupyter==1.0.0
-jupyter_contrib_nbextensions==0.7.0
-matplotlib==3.7.0
-numpy==1.24.2
-pandas==1.5.3
-pyarrow==11.0.0
+category_encoders>=2.6.0
+evidently>=0.2.6
+jupyter>=1.0.0
+jupyter_contrib_nbextensions>=0.7.0
+matplotlib>=3.8.0
+numpy>=1.26.0
+pandas>=2.0.0
+pyarrow>=14.0.1
 python-box==5.4.1
 requests==2.28.2
-streamlit==1.19.0
-pyyaml==5.1
-scikit-learn==1.2.1
-scipy==1.10.1
+streamlit>=1.29.0
+pyyaml>=5.1
+scikit-learn>=1.3.0
+scipy>=1.11.3
 seaborn==0.12.2
 altair==4.0
+plotly>=5.18.0
 ```
 
 ---
@@ -117,35 +118,44 @@ altair==4.0
 
 ```sh
 git clone <repo-link>
-cd Evidently AI Sets Sail in Docker
+cd evidently-ai-streamlit-app
 ```
 
-### 2️⃣ Build & Run Containers
+### 2️⃣ Build & Run Container
 
 ```sh
+# Build the image
 docker build -t evidently-streamlit .
+
+# Run the container
 docker run -p 8501:8501 evidently-streamlit
 ```
- 
+
 ### 3️⃣ Access the Streamlit App
 
 Open [http://localhost:8501](http://localhost:8501) in your browser.
-
+![screenshot](/assets/Screenshot%202025-03-26%20060036.png)
 ---
 
-## 🎯 Conclusion
+## 🎯 Features
 
-✅ Successfully deployed an `Evidently AI` dashboard using `Streamlit` inside Docker.
-✅ Integrated report selection for different projects.
-✅ Used Docker for easy deployment and scalability.
-✅ Organized code into modular UI and utility functions.
+✅ Interactive dashboard for ML model monitoring
+✅ Project-based organization of reports
+✅ Period-based report selection
+✅ Responsive UI with modern styling
+✅ Docker-based deployment
+✅ Hot-reloading for development
+✅ Modular code structure
 
 ---
 
 ## 🚀 Next Steps
 
-🔹 Add authentication for project access.
-🔹 Implement report comparisons over different periods.
-🔹 Deploy this setup on a cloud platform like AWS/GCP.
+🔹 Add authentication for project access
+🔹 Implement report comparisons over different periods
+🔹 Add data export functionality
+🔹 Implement automated report generation
+🔹 Add custom visualization options
+🔹 Deploy to cloud platforms (AWS/GCP/Azure)
 
 🎯 Keep exploring and happy coding! 🚀
