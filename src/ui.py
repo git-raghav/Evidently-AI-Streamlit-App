@@ -34,24 +34,44 @@ def set_page_container_style() -> None:
 
 
 def display_sidebar_header() -> None:
-
     # Logo
     logo = Image.open("static/logo.png")
     with st.sidebar:
-        st.image(logo, use_column_width=True)
-        col1, col2 = st.columns(2)
-        repo_link: Text = (
-            "https://github.com/mnrozhkov/evidently/tree/main/examples/integrations"
+        # Fix deprecation warning by using use_container_width
+        st.image(logo, use_container_width=True)
+
+        # Better way to display links in sidebar
+        st.markdown("""
+        <style>
+        .sidebar-link {
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+            padding: 6px;
+            margin: 2px 0px;
+            border-radius: 4px;
+            text-decoration: none;
+            background-color: #f0f2f6;
+            color: #262730;
+        }
+        .sidebar-link:hover {
+            background-color: #e6e9ef;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+
+        repo_link = "https://github.com/mnrozhkov/evidently/tree/main/examples/integrations"
+        evidently_docs = "https://docs.evidentlyai.com/"
+
+        st.markdown(
+            f'<a class="sidebar-link" href="{repo_link}" target="_blank">Source code</a>',
+            unsafe_allow_html=True
         )
-        evidently_docs: Text = "https://docs.evidentlyai.com/"
-        col1.markdown(
-            f"<a style='display: block; text-align: center;' href={repo_link}>Source code</a>",
-            unsafe_allow_html=True,
+        st.markdown(
+            f'<a class="sidebar-link" href="{evidently_docs}" target="_blank">Evidently docs</a>',
+            unsafe_allow_html=True
         )
-        col2.markdown(
-            f"<a style='display: block; text-align: center;' href={evidently_docs}>Evidently docs</a>",
-            unsafe_allow_html=True,
-        )
+
         st.header("")  # add space between logo and selectors
 
 
@@ -161,13 +181,13 @@ def display_report(report_path: Path) -> List[Text]:
         # list report parts
         report_parts: List[Path] = sorted(
             list(map(
-                lambda report_part: report_path / report_part, 
+                lambda report_part: report_path / report_part,
                 os.listdir(report_path))
                 )
             )
         tab_names: List[Text] = map(get_report_name, report_parts)
         tab_names_formatted = [f"📈 {name}" for name in tab_names]
-        
+
         # create tabs
         tabs: Iterable[object] = st.tabs(tab_names_formatted)
         report_contents: List[Text] = []
@@ -183,6 +203,6 @@ def display_report(report_path: Path) -> List[Text]:
                     )
 
         return report_contents
-    
-    else: 
+
+    else:
         return EntityNotFoundError("🔍 No reports found")
